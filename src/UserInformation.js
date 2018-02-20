@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './UserInformation.css';
 
-class UserInformation extends Component {
-    render() {
-        const { info } = this.props;
+const UserInformation = (props) => {
+        const { info } = props;
         if (!info) {
             return <h1 className='UserInformation--header vertical-center'>Please Select a User</h1>
         }
@@ -25,6 +24,6 @@ class UserInformation extends Component {
             </div>
         )
     }
-}
+
 
 export default UserInformation;
