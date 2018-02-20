@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './UserSideBar.css';
 
-class UserItem extends Component {
-    render(){
-        const {user, selectedUser, onSelect, removeUser } = this.props;
+const UserItem = props => {
+    const {info} = props; 
+        const {user, selectedUser, onSelect, removeUser } = props;
         const classes = selectedUser === user ? 
                             'UserSideBar--list-item active' : 
                             'UserSideBar--list-item';
@@ -14,10 +14,10 @@ class UserItem extends Component {
                     <span onClick = {() => removeUser(user)}>X</span>
                 </li>);
     }
-}
-class UserList extends Component {
-    render(){
-        const { users, selectedUser, onSelect, removeUser } = this.props;
+
+const UserList = props => {
+    const {info} = props;
+        const { users, selectedUser, onSelect, removeUser } = props;
         const Users = users.map((user, index) => <UserItem 
                                                         key={index}
                                                         user={user}
@@ -31,10 +31,10 @@ class UserList extends Component {
             </ul>
         );
     }
-}
-class UserSideBar extends Component {
-    render(){
-        const { users, selectedUser, onSelect, removeUser } = this.props;
+
+const UserSideBar = props => {
+    const {info} = props;
+        const { users, selectedUser, onSelect, removeUser } = props;
         
         return (
             <div className="UserSideBar--container">
@@ -45,9 +45,9 @@ class UserSideBar extends Component {
                     onSelect={onSelect}
                     removeUser = {removeUser}/>
                 <div className="UserSideBar--user-form">
-                    <form onSubmit={(e) => this.props.addUser(e, this.props.username)}>
+                    <form onSubmit={(e) => this.props.addUser(e, props.username)}>
                         <input type="text" 
-                            value={this.props.username} 
+                            value={props.username} 
                             placeholder='GitHub Username'
                             onChange={e => this.props.updateUser(e)}/> 
                     </form> 
@@ -55,6 +55,6 @@ class UserSideBar extends Component {
             </div>
         );
     }
-}
+
 
 export default UserSideBar;
